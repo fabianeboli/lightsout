@@ -1,7 +1,7 @@
 import React, { useState, FC } from 'react';
 import styles from './Tile.module.sass'
 
-enum Light {
+export enum Light {
 	on,
 	off
 }
