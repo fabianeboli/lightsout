@@ -1,11 +1,13 @@
 @import '../../_Imports.module.sass'
 .board
     max-width: 800px
-    margin: 5% auto
+    margin: 2% auto
     justify-content: center
+    border-collapse: collapse 
+    box-shadow: 1px 1px 50px $OnInsetShadow
 
-// .lightOn
-//     background-color: $lightOn
-
-// .lightOff
-//     backgroudn-color: $lightOff
+.wonGame
+    font-size: 5.5rem
+    color: $titleColor
+    font-family: $titleFont
+    text-shadow: 0px 0px 20px $titleColor

@@ -1,0 +1,47 @@
+@import '../../_Imports.module.sass'
+
+.title
+    font-size: 5.5rem
+    color: $titleColor
+    font-family: $titleFont
+    text-shadow: 0px 0px 20px $titleColor
+
+.difficulty
+    font-family: 'Monoton',cursive
+    color: #87ffff
+    font-size: 1.25em
+    font-weight: 700
+    margin: 1.0rem
+
+
+.buttons
+    color: white 
+    border: none
+    margin: 0.1rem 0.4rem
+    font-weight: 700
+    font-style: italic
+    padding: 10px
+    border-radius: 4px
+
+.buttonEasy
+    @extend .buttons
+    $color: nth($buttonsColors, random(2))
+    background-color: $color
+    box-shadow: 0px 0px 20px $color
+
+
+.buttonNormal
+    @extend .buttons
+    $color: nth($buttonsColors, random(2))
+    background-color: $color
+    box-shadow: 0px 0px 20px $color
+
+
+.buttonHard
+    @extend .buttons
+    $color: nth($buttonsColors, random(2))
+    background-color: $color 
+    box-shadow: 0px 0px 20px $color
+
+@keyframes switchLight
+    

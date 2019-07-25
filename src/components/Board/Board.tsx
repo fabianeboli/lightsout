@@ -8,7 +8,6 @@ interface IProps {
     difficulty: number; 
 }
 
-
 export const Board:React.FC<IProps> = (props: IProps) => {
     const generateBoard = () => {
         let board:Light[][] = [];
@@ -26,22 +25,18 @@ export const Board:React.FC<IProps> = (props: IProps) => {
     
     const flipLights = (coordination: string) => {
         const [y, x] = coordination.split(':').map(Number);
-        console.log("I AM HERE", coordination)
         const flipLight = (y:number, x:number) => {
             if(x >= 0 && x < props.numberOfCols && y >= 0 && y < props.numberOfRows) {
                 const checkLight =  light[y][x] === Light.off ? Light.on: Light.off;
                 light[y][x] = checkLight; 
                 setLights([...light])
-                console.log('I am also used',light[y][x], light[y][x] === Light.off ? Light.on: Light.off, y, x)
             }
         }
         flipLight(y, x)
         flipLight(y, x - 1) // upper Neighbour
         flipLight(y, x + 1) // southern Neighbour
         flipLight(y - 1, x) // western Neighbour
-        flipLight(y + 1, x) // eastern Neighbour
-        console.log(light)
-       
+        flipLight(y + 1, x) // eastern Neighbour       
     }
 
     const isGameWon = ():boolean => light.every(y => y.every(x => x === Light.off))
@@ -66,11 +61,10 @@ export const Board:React.FC<IProps> = (props: IProps) => {
             </table>
         );
     }
-        
 
     return(
-        <div className={styles.board}>
-        {isGameWon() ? <h2>You won!</h2> : ''}
+        <div>
+        {isGameWon() ? <span className={styles.wonGame}>You won!</span> : ''}
         {presentBoard()}
         </div>
     )

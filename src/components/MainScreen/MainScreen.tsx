@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Board } from '../Board/Board';
+import styles from './MainScreen.module.sass'
 
 enum Difficulty {
     Easy = 0.25,
@@ -21,7 +22,6 @@ export const MainScreen = () => {
     })
     const [boardSet, setBoardSet] = useState<boolean>(false)
     const setDifficulty = (difficulty: Difficulty) => {
-        console.log(boardParameters.numberOfRows)
         setBoardSet(true)
         switch (difficulty) {
             case Difficulty.Easy:
@@ -34,13 +34,15 @@ export const MainScreen = () => {
     }
 
     const initialScreen = () => {
-        console.log("IS NOT Set", boardSet)
         return (
             <>
-                <div>Choose your difficulty</div>
-                <button onClick={() => setDifficulty(Difficulty.Easy)}>Easy</button>
-                <button onClick={() => setDifficulty(Difficulty.Normal)}>Normal</button>
-                <button onClick={() => setDifficulty(Difficulty.Hard)}>Hard</button>
+                <h1 className={styles.difficulty}>Choose your difficulty</h1>
+                <div>
+                    <button className={styles.buttonEasy} onClick={() => setDifficulty(Difficulty.Easy)}>Easy</button>
+                    <button className={styles.buttonNormal} onClick={() => setDifficulty(Difficulty.Normal)}>Normal</button>
+                    <button className={styles.buttonHard} onClick={() => setDifficulty(Difficulty.Hard)}>Hard</button>
+                </div>
+
             </>
         )
     }
@@ -54,15 +56,12 @@ export const MainScreen = () => {
                     difficulty={boardParameters.difficulty} />
             </>
         )
-
     }
 
     return (
         <div>
-            <h1> Lights Out </h1>
+            <div className={styles.title}> Lights Out </div>
             {boardSet ? gameScreen() : initialScreen()}
-
-
         </div>
     )
 }
