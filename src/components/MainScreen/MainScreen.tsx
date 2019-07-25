@@ -60,7 +60,7 @@ export const MainScreen = () => {
 
     return (
         <div>
-            <div className={styles.title}> Lights Out </div>
+            <div className={styles.title}> Lights <span className={styles.bulb}>O</span>ut </div>
             {boardSet ? gameScreen() : initialScreen()}
         </div>
     )
