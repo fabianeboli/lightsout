@@ -4,7 +4,8 @@ import styles from './Board.module.sass';
 
 interface IProps {
     numberOfRows: number;
-    numberOfCols: number; 
+    numberOfCols: number;
+    difficulty: number; 
 }
 
 
@@ -14,7 +15,7 @@ export const Board:React.FC<IProps> = (props: IProps) => {
         for(let i = 0; i < props.numberOfRows; i++) {
             let row = [];
             for(let i = 0;i < props.numberOfCols;i++){
-                row.push(Light.on);
+                row.push(Math.random() < props.difficulty ? Light.on : Light.off);
             }
             board.push(row)
         }
@@ -22,7 +23,6 @@ export const Board:React.FC<IProps> = (props: IProps) => {
     }
 
     const [light,setLights] = useState<Light[][]>(generateBoard());
-    const [test, settest] = useState<number[][]>([])
     
     const flipLights = (coordination: string) => {
         const [y, x] = coordination.split(':').map(Number);
@@ -31,7 +31,7 @@ export const Board:React.FC<IProps> = (props: IProps) => {
             if(x >= 0 && x < props.numberOfCols && y >= 0 && y < props.numberOfRows) {
                 const checkLight =  light[y][x] === Light.off ? Light.on: Light.off;
                 light[y][x] = checkLight; 
-                setLights([...light, [checkLight]])
+                setLights([...light])
                 console.log('I am also used',light[y][x], light[y][x] === Light.off ? Light.on: Light.off, y, x)
             }
         }
@@ -40,7 +40,11 @@ export const Board:React.FC<IProps> = (props: IProps) => {
         flipLight(y, x + 1) // southern Neighbour
         flipLight(y - 1, x) // western Neighbour
         flipLight(y + 1, x) // eastern Neighbour
+        console.log(light)
+       
     }
+
+    const isGameWon = ():boolean => light.every(y => y.every(x => x === Light.off))
 
     
     const presentBoard = () => {
@@ -66,6 +70,7 @@ export const Board:React.FC<IProps> = (props: IProps) => {
 
     return(
         <div className={styles.board}>
+        {isGameWon() ? <h2>You won!</h2> : ''}
         {presentBoard()}
         </div>
     )

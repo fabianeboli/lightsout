@@ -2,11 +2,14 @@ import React from 'react';
 import './App.css';
 import { Tile } from './components/Tile/Tile';
 import { Board } from './components/Board/Board';
+import { MainScreen } from './components/MainScreen/MainScreen';
+
+
 
 const App: React.FC = () => {
   return (
     <div className="App">
-     <Board numberOfRows={5} numberOfCols={5}/>
+      <MainScreen/>
     </div>
   );
 }

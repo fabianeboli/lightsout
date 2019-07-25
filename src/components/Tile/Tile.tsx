@@ -12,14 +12,10 @@ interface IProps {
 }
 
 export const Tile:React.FC<IProps> = (props: IProps) => {
-	const [lights, setLights] = useState<Light>(Light.off)
-	let lightsColor = props.light === Light.off ? styles.lightOff : styles.lightOn; 
+	const lightsColor = props.light === Light.off ? styles.lightOff : styles.lightOn; 
 	
 	const handleClick = (evt: React.MouseEvent) => {
-		lightsColor = props.light === Light.off ? styles.lightOff : styles.lightOn; 
-
-		props.click(evt)
-		// setLights(props.light === Light.off ? Light.on : Light.off);
+		props.click()
 		console.log('CURRENT PROP LIGHT', props.light)
 	}
 	
