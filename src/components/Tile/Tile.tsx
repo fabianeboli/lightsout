@@ -7,19 +7,22 @@ export enum Light {
 }
 
 interface IProps {
-	id: number;
 	click: any;
 	light: Light;
 }
 
 export const Tile:React.FC<IProps> = (props: IProps) => {
 	const [lights, setLights] = useState<Light>(Light.off)
-	const lightsColor = Light.on ? styles.lightOn : styles.lightOff; 
-	const handleClick = () => {
-		setLights(lights === Light.off ? Light.on : Light.off);
-		props.click({ id: props.id, light: lights });
-	}
+	let lightsColor = props.light === Light.off ? styles.lightOff : styles.lightOn; 
+	
+	const handleClick = (evt: React.MouseEvent) => {
+		lightsColor = props.light === Light.off ? styles.lightOff : styles.lightOn; 
 
+		props.click(evt)
+		// setLights(props.light === Light.off ? Light.on : Light.off);
+		console.log('CURRENT PROP LIGHT', props.light)
+	}
+	
 	return (
 		<>
 			<button className={`${styles.tile} ${lightsColor}`} onClick={handleClick}></button>

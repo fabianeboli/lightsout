@@ -6,7 +6,7 @@ import { Board } from './components/Board/Board';
 const App: React.FC = () => {
   return (
     <div className="App">
-     <Board size={8}/>
+     <Board numberOfRows={5} numberOfCols={5}/>
     </div>
   );
 }
