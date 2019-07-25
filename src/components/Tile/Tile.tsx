@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import React from 'react';
 import styles from './Tile.module.sass'
 
 export enum Light {
